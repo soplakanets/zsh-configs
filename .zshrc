@@ -1,3 +1,5 @@
+[[ -o login ]] || return
+
 # Color table taken from: http://www.understudy.net/custom.html
 #Prompt Color Table Z shell
 fg_black=$'\e[0;30m'
@@ -98,6 +100,13 @@ setopt pushd_ignore_dups
 
 
 # ------------------------------------------
+# Named directories
+# ------------------------------------------
+W=$HOME/Workspace ; : ~W
+D=$HOME/Downloads ; : ~D
+
+
+# ------------------------------------------
 # Command line
 # ------------------------------------------
 autoload -U edit-command-line
@@ -137,6 +146,14 @@ alias ls='ls -GF'
 
 
 # ------------------------------------------
+# Piping aliases
+# ------------------------------------------
+alias -g L='| less'
+alias -g M='| more'
+alias -g G='| grep'
+
+
+# ------------------------------------------
 # Autocomplete
 # ------------------------------------------
 autoload -Uz compinit
@@ -147,6 +164,17 @@ zstyle ':completion::complete:*' cache-path $HOME/.zsh/cache/
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
+
+
+# ------------------------------------------
+# Auto corrections
+# ------------------------------------------
+setopt correct_all
+
+alias man='nocorrect man'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias mkdir='nocorrect mkdir'
 
 
 # ------------------------------------------
