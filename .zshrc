@@ -49,6 +49,15 @@ export RPROMPT='%*'
 export EDITOR='vim'
 export PAGER='less'
 
+# Configure LESS
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+
 RC_DIR="${HOME}/.zsh"
 
 
@@ -65,10 +74,10 @@ src() {
     autoload -U zrecompile
 
     [ -f $HOME/.zshrc ] && zrecompile -p $HOME/.zshrc
-    [ -f $HOME/.zshrc.zwc.old ] && rm -f $HOME/.zshrc.zwc.old 
+    [ -f $HOME/.zshrc.zwc.old ] && rm -f $HOME/.zshrc.zwc.old
 
     [ -f $HOME/.zshrc.local ] && zrecompile -p $HOME/.zshrc.local
-    [ -f $HOME/.zshrc.local.zwc.old ] && rm -f $HOME/.zshrc.local.zwc.old 
+    [ -f $HOME/.zshrc.local.zwc.old ] && rm -f $HOME/.zshrc.local.zwc.old
 
     for rcfile in $RC_DIR/*.zsh; do
         zrecompile -p $rcfile
@@ -91,6 +100,8 @@ bindkey -e # Use emacs style keys
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
+
+alias ll='ls -lahtr'
 
 bindkey -s "\C-t" "dirs -v\rcd ~"
 
@@ -167,17 +178,6 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm 
 
 
 # ------------------------------------------
-# Auto corrections
-# ------------------------------------------
-setopt correct_all
-
-alias man='nocorrect man'
-alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
-alias mkdir='nocorrect mkdir'
-
-
-# ------------------------------------------
 # Colorize output of some commands
 # ------------------------------------------
 if [ `which grc` ]; then
@@ -208,5 +208,4 @@ fi
 # dependent settings, like PATH adjustments
 # ------------------------------------------
 [ -r $HOME/.zshrc.local ] && source $HOME/.zshrc.local
-
 

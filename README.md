@@ -1,6 +1,6 @@
 About
 =====
-My ZSHell configs. Feel free to use it.
+My ZSHell configs. Feel free to use.
 
 
 Installation
