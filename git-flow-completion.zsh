@@ -1,0 +1,1 @@
+/Users/soplakanets/Workspace/git-flow-completion/git-flow-completion.zsh
