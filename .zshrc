@@ -44,8 +44,24 @@ at_reverseoff=$'\e[27m'
 at_strikeoff=$'\e[29m'
 
 
-export PROMPT="%3c %{${fg_red}%}→%{${at_normal}%} "
-export RPROMPT='%*'
+function git_current_branch() {
+  local ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo $( git_format_branch "${ref#refs/heads/}" )
+}
+
+git_format_branch() {
+  [ -z $1 ] && return
+  if [[ -n $(git status -s --ignore-submodules=dirty  2> /dev/null) ]]; then
+    echo " [%{${fg_lred}%}${1}%{${at_normal}%}] "
+  else
+    echo " [%{${fg_lgreen}%}${1}%{${at_normal}%}] "
+  fi
+}
+
+export PROMPT=$'%3c %{${fg_lblue}%}→%{${at_normal}%} '
+export RPROMPT=$'$(git_current_branch) %*'
+setopt prompt_subst
+
 export EDITOR='vim'
 export PAGER='less'
 
