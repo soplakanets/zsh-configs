@@ -58,7 +58,8 @@ git_format_branch() {
   fi
 }
 
-export PROMPT=$'%3c %{${fg_lblue}%}→%{${at_normal}%} '
+# export PROMPT=$'%3c %{${fg_lblue}%}→%{${at_normal}%} '
+ export PROMPT=$'%3c %{\e[0;34m%}→%{\e[0m%} '
 export RPROMPT=$'$(git_current_branch) %*'
 setopt prompt_subst
 
@@ -225,3 +226,8 @@ fi
 # ------------------------------------------
 [ -r $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
