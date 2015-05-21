@@ -118,6 +118,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
 
+alias ls='ls -GF'
 alias ll='ls -lahtr'
 
 bindkey -s "\C-t" "dirs -v\rcd ~"
@@ -227,7 +228,3 @@ fi
 [ -r $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
